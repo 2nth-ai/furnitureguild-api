@@ -275,5 +275,6 @@ async function handleGetQuote(
   if (!r.ok) {
     return json({ error: "not_found_or_forbidden", status: r.status }, r.status, cors);
   }
-  return json((await r.json()).data, 200, cors);
+  const body = (await r.json()) as { data: unknown };
+  return json(body.data, 200, cors);
 }
