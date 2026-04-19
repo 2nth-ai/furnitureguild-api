@@ -3,6 +3,12 @@ main = "src/index.ts"
 compatibility_date = "2026-04-01"
 compatibility_flags = ["nodejs_compat"]
 
+# Custom domain — attaches fg-api.2nth.ai to this Worker and auto-creates
+# the CNAME in the 2nth.ai zone. Replaces the *.workers.dev subdomain.
+routes = [
+  { pattern = "fg-api.2nth.ai", custom_domain = true }
+]
+
 # Comma-separated origins allowed by the CORS layer.
 # furnitureguild.pages.dev (prod) + any preview branch deployment + localhost dev.
 [vars]
