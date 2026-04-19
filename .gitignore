@@ -1,0 +1,8 @@
+.DS_Store
+**/.DS_Store
+node_modules/
+.wrangler/
+.env
+.env.local
+.dev.vars
+dist/

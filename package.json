@@ -1,0 +1,17 @@
+{
+  "name": "furnitureguild-api",
+  "version": "0.1.0",
+  "description": "Cloudflare Worker API gateway for Furniture Guild — proxies to private ERPNext in africa-south1",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "secret:set-all": "echo 'Run: wrangler secret put ERP_URL && wrangler secret put ERP_API_KEY && wrangler secret put ERP_API_SECRET'"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260101.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^4.76.0"
+  }
+}
