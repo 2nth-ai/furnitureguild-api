@@ -40,14 +40,21 @@ interface QuoteRequest {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+
+    // Handle ERPNext v13 /desk/* → v16 /app/* — served at erp-fg.2nth.ai
+    // for browsers that autofill the old path.
+    if (url.hostname === "erp-fg.2nth.ai" && url.pathname.startsWith("/desk")) {
+      const newPath = url.pathname.replace(/^\/desk/, "/app");
+      return Response.redirect(`https://erp-fg.2nth.ai${newPath}${url.search}`, 301);
+    }
+
     const origin = request.headers.get("Origin") ?? "";
     const cors = buildCors(origin, env);
 
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: cors });
     }
-
-    const url = new URL(request.url);
 
     try {
       if (url.pathname === "/health" && request.method === "GET") {

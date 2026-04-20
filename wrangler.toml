@@ -5,8 +5,12 @@ compatibility_flags = ["nodejs_compat"]
 
 # Custom domain — attaches fg-api.2nth.ai to this Worker and auto-creates
 # the CNAME in the 2nth.ai zone. Replaces the *.workers.dev subdomain.
+#
+# Plus a path-specific route on erp-fg.2nth.ai/desk/* that handles the
+# ERPNext v13 → v16 URL migration for us (browsers autofill old /desk/* URLs).
 routes = [
-  { pattern = "fg-api.2nth.ai", custom_domain = true }
+  { pattern = "fg-api.2nth.ai", custom_domain = true },
+  { pattern = "erp-fg.2nth.ai/desk/*", zone_name = "2nth.ai" }
 ]
 
 # Comma-separated origins allowed by the CORS layer.
